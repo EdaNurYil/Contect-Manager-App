@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="userViewModel"
+            type="com.example.contectmanagerapp.viewModel.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background"
+        tools:context=".MainActivity">
+
+        <!-- ───── Top strip ───── -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView">
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/nameET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="@string/hint_name"
+                android:inputType="textPersonName"
+                android:text="@={userViewModel.inputName}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Email field -->
+            <EditText
+                android:id="@+id/emailET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:text="@={userViewModel.inputEmail}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn2"
+                app:layout_constraintTop_toBottomOf="@+id/nameET" />
+
+            <!-- Save / Update button -->
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/desc_save_update"
+                android:text="@={userViewModel.saveOrUpdateButtonText}"
+                android:onClick="@{() -> userViewModel.saveOrUpdate()}"
+                app:layout_constraintStart_toEndOf="@+id/nameET"
+                app:layout_constraintTop_toTopOf="@+id/nameET"
+                app:layout_constraintBottom_toTopOf="@+id/btn2" />
+
+            <!-- Clear / Delete button -->
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/desc_clear_delete"
+                android:text="@={userViewModel.clearAllOrDeleteButtonText}"
+                android:onClick="@{() -> userViewModel.clearAllOrDelete()}"
+                app:layout_constraintStart_toEndOf="@+id/emailET"
+                app:layout_constraintTop_toBottomOf="@+id/btn1"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- RecyclerView below the form -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/constraint2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

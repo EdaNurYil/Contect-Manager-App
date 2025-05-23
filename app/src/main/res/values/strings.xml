@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ContectManagerApp</string>
+    <string name="hint_name">Enter your name</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="desc_save_update">Save or update contact</string>
+    <string name="desc_clear_delete">Clear all or delete contact(s)</string>
+</resources>
